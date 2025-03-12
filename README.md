@@ -13,10 +13,6 @@ No real logic changes or anything was made. Just versioning changing and trying 
 
 # Strapi Webhook GitHub Actions Proxy
 
-[![Deploy](https://github.com/badsyntax/strapi-webhook-actions-proxy/actions/workflows/prod-deploy.yml/badge.svg)](https://github.com/badsyntax/strapi-webhook-actions-proxy/actions/workflows/prod-deploy.yml)
-[![Analyze](https://github.com/badsyntax/strapi-webhook-actions-proxy/actions/workflows/analyze.yml/badge.svg)](https://github.com/badsyntax/strapi-webhook-actions-proxy/actions/workflows/analyze.yml)
-[![CodeQL](https://github.com/badsyntax/strapi-webhook-actions-proxy/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/badsyntax/strapi-webhook-actions-proxy/actions/workflows/codeql-analysis.yml)
-
 A super simple & lightweight Node.js proxy to send `repository_dispatch` events to GitHub from a Strapi Webhook.
 
 Useful when you want to run a GitHub Actions workflow when changes are made in Strapi.
@@ -35,15 +31,6 @@ on:
 2 - Create a GitHub Personal access token with `repo` scope
 
 3 - Deploy the service to your server, for example:
-
-```bash
-docker run \
-  --publish 5000:5000 \
-  --env GITHUB_TOKEN=YOURTOKEN \
-  ghcr.io/badsyntax/strapi-webhook-actions-proxy:latest
-```
-
-(View [available docker tags](https://github.com/users/badsyntax/packages/container/package/strapi-webhook-actions-proxy), or just use `latest`.)
 
 4 - Create a new Webhook in Strapi that points to the service with the following query params:
 
