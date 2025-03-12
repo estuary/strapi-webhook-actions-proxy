@@ -16,7 +16,7 @@ apiRoute.post(
       if (!repo) {
         throw new Error('repo param missing');
       }
-    } catch (e) {
+    } catch (e: any) {
       return res.status(400).send(e.message);
     }
 
@@ -40,7 +40,7 @@ apiRoute.post(
         throw new Error(response.statusText);
       }
       res.status(200).send('Success');
-    } catch (e) {
+    } catch (e: any) {
       const msg = 'Error calling actions endpoint';
       console.error(`${msg}:`, e.message);
       res.status(500).send(msg);
