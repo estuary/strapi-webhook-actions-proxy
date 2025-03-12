@@ -1,7 +1,6 @@
 import express, { RequestHandler } from 'express';
 import logger from 'morgan';
 import dotenv from 'dotenv';
-import 'isomorphic-fetch';
 
 dotenv.config();
 

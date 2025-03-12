@@ -20,7 +20,7 @@ curl --header "Content-Type: application/json" \
 ## Build, Run, Publish Docker Image
 
 ```bash
-docker build -t ghcr.io/badsyntax/strapi-webhook-actions-proxy:latest .
-docker run --publish 5000:5000 --env-file .env ghcr.io/badsyntax/strapi-webhook-actions-proxy:latest
-docker push ghcr.io/badsyntax/strapi-webhook-actions-proxy:latest
+docker buildx build --no-cache --platform linux/amd64 -t us-central1-docker.pkg.dev/estuary-marketing/strapi/webhook-proxy:latest .
+docker run --publish 5000:5000 --env-file .env us-central1-docker.pkg.dev/estuary-marketing/strapi/webhook-proxy:latest
+docker push us-central1-docker.pkg.dev/estuary-marketing/strapi/webhook-proxy:latest
 ```
