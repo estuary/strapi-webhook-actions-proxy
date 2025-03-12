@@ -1,3 +1,16 @@
+# What is different here?
+
+No real logic changes or anything was made. Just versioning changing and trying to reduce the surface area for security issues.
+
+1. Updated the Docker image for `node` to 19.5. We need to get this to `lts` but as long as it is above `16` that is better.
+1. Remove `isomorphic-fetch`. The default `fetch` seems fine to use and this is just another thing we'd need to keep an eye on.
+1. Update all packages as much as possible without needing to make any large changes.
+1. Removed the `.github` settings. Since we will not be using those I took them out.
+
+---
+
+---
+
 # Strapi Webhook GitHub Actions Proxy
 
 [![Deploy](https://github.com/badsyntax/strapi-webhook-actions-proxy/actions/workflows/prod-deploy.yml/badge.svg)](https://github.com/badsyntax/strapi-webhook-actions-proxy/actions/workflows/prod-deploy.yml)
