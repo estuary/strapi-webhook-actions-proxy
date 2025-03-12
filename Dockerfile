@@ -34,9 +34,11 @@ WORKDIR /app
 
 COPY . .
 
+# Original Maintainer
 # LABEL maintainer=willis.rh@gmail.com
 LABEL maintainer=support@estuary.dev
 
+# Original Container
 # LABEL org.opencontainers.image.source=https://github.com/badsyntax/strapi-webhook-actions-proxy
 LABEL org.opencontainers.image.source=https://github.com/estuary/strapi-webhook-actions-proxy
 
