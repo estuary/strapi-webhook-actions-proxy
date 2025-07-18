@@ -6,15 +6,12 @@ apiRoute.post(
   '/',
   async (
     req: Request<null, ResponseBody, RequestBody, QueryParams>,
-    res: Response<ResponseBody>
+    res: Response<ResponseBody>,
   ) => {
-    const { event_type: eventType, repo } = req.query;
+    const { event_type: eventType } = req.query;
     try {
       if (!eventType) {
         throw new Error('event_type param missing');
-      }
-      if (!repo) {
-        throw new Error('repo param missing');
       }
     } catch (e: any) {
       return res.status(400).send(e.message);
@@ -22,7 +19,7 @@ apiRoute.post(
 
     try {
       const response = await fetch(
-        `https://api.github.com/repos/${repo}/dispatches`,
+        `https://api.github.com/repos/estuary/marketing-site/dispatches`,
         {
           method: 'post',
           headers: new Headers({
@@ -34,7 +31,7 @@ apiRoute.post(
             event_type: eventType,
             client_payload: req.body,
           }),
-        }
+        },
       );
       if (!response.ok) {
         throw new Error(response.statusText);
@@ -45,5 +42,5 @@ apiRoute.post(
       console.error(`${msg}:`, e.message);
       res.status(500).send(msg);
     }
-  }
+  },
 );
