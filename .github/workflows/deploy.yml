@@ -14,7 +14,7 @@ env:
     PROJECT_ID: estuary-marketing
     REGION: us-central1
     REGISTRY: us-central1-docker.pkg.dev
-    IMAGE: us-central1-docker.pkg.dev/estuary-marketing/webhook-proxy/server
+    IMAGE: us-central1-docker.pkg.dev/estuary-marketing/strapi/webhook-proxy
     CLOUD_RUN_SERVICE: webhook-proxy
 
 jobs:
