@@ -11,6 +11,26 @@ No real logic changes or anything was made. Just versioning changing and trying 
 
 ---
 
+# Deployment
+
+Merging to `master` automatically builds and deploys to production via GitHub Actions (`.github/workflows/deploy.yml`). The workflow:
+
+1. Runs ESLint and Prettier checks
+2. Builds a `linux/amd64` Docker image from `Dockerfile`
+3. Pushes to Artifact Registry as both `:latest` and `:<7-char-sha>`
+4. Deploys the new revision to the `webhook-proxy` Cloud Run service
+
+To roll back to a previous revision, find the SHA tag in Artifact Registry and run:
+
+```bash
+gcloud run deploy webhook-proxy \
+  --image us-central1-docker.pkg.dev/estuary-marketing/strapi/webhook-proxy:<sha> \
+  --region us-central1 \
+  --project estuary-marketing
+```
+
+---
+
 # Strapi Webhook GitHub Actions Proxy
 
 A super simple & lightweight Node.js proxy to send `repository_dispatch` events to GitHub from a Strapi Webhook.
