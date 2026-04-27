@@ -13,8 +13,8 @@ apiRoute.post(
       if (!eventType) {
         throw new Error('event_type param missing');
       }
-    } catch (e: any) {
-      return res.status(400).send(e.message);
+    } catch (e) {
+      return res.status(400).send(e instanceof Error ? e.message : String(e));
     }
 
     try {
@@ -37,9 +37,9 @@ apiRoute.post(
         throw new Error(response.statusText);
       }
       res.status(200).send('Success');
-    } catch (e: any) {
+    } catch (e) {
       const msg = 'Error calling actions endpoint';
-      console.error(`${msg}:`, e.message);
+      console.error(`${msg}:`, e instanceof Error ? e.message : String(e));
       res.status(500).send(msg);
     }
   },
