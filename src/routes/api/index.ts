@@ -1,6 +1,13 @@
 import { Router, Request, Response } from 'express';
+import { createAppAuth } from '@octokit/auth-app';
 import { ResponseBody, RequestBody, QueryParams } from './types';
 export const apiRoute = Router();
+
+const auth = createAppAuth({
+  appId: process.env.GH_APP_ID!,
+  privateKey: Buffer.from(process.env.GH_APP_PRIVATE_KEY!, 'base64').toString(),
+  installationId: process.env.GH_APP_INSTALLATION_ID!,
+});
 
 apiRoute.post(
   '/',
@@ -18,13 +25,14 @@ apiRoute.post(
     }
 
     try {
+      const { token } = await auth({ type: 'installation' });
       const response = await fetch(
         `https://api.github.com/repos/estuary/marketing-site/dispatches`,
         {
           method: 'post',
           headers: new Headers({
             Accept: 'application/vnd.github.v3+json',
-            Authorization: `token ${process.env.GITHUB_TOKEN}`,
+            Authorization: `token ${token}`,
             ContentType: 'application/json',
           }),
           body: JSON.stringify({

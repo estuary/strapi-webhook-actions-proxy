@@ -4,8 +4,13 @@
 2. Install dependencies: `npm install`
 3. Create a file called `.env` in the root of the application with the following contents:
    ```bash
-   GITHUB_TOKEN="YOUR_GITHUB_TOKEN"
+   GH_APP_ID="YOUR_GH_APP_ID"
+   GH_APP_PRIVATE_KEY="YOUR_BASE64_ENCODED_PEM"
+   GH_APP_INSTALLATION_ID="YOUR_INSTALLATION_ID"
    ```
+   - **App ID**: found on the GitHub App's settings page under the app name
+   - **Private key**: generate one on the app's settings page, then base64-encode the downloaded PEM: `base64 -w0 your-app.private-key.pem`
+   - **Installation ID**: visible in the URL when you view the app's installation (`/organizations/estuary/settings/installations/<ID>`)
 4. Start the app: `DEBUG=strapi-webhook-actions-proxy:* npm start`
 
 ## Testing Locally
