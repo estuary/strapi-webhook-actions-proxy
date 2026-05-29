@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const { GITHUB_TOKEN } = process.env;
-if (!GITHUB_TOKEN) {
+const { GH_APP_ID, GH_APP_PRIVATE_KEY, GH_APP_INSTALLATION_ID } = process.env;
+if (!GH_APP_ID || !GH_APP_PRIVATE_KEY || !GH_APP_INSTALLATION_ID) {
   throw new Error('Env not set correctly');
 }
 

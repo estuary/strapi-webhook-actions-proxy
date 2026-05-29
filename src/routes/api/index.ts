@@ -47,7 +47,7 @@ apiRoute.post(
           method: 'post',
           headers: new Headers({
             Accept: 'application/vnd.github.v3+json',
-            Authorization: `token ${process.env.GITHUB_TOKEN}`,
+            Authorization: `token ${token}`,
             ContentType: 'application/json',
           }),
           body: JSON.stringify({
