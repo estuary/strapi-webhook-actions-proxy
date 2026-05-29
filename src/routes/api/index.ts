@@ -4,9 +4,16 @@ import { ResponseBody, RequestBody, QueryParams } from './types';
 export const apiRoute = Router();
 
 async function getInstallationToken(): Promise<string> {
-  const privateKey = Buffer.from(process.env.GH_APP_PRIVATE_KEY!, 'base64').toString();
+  const privateKey = Buffer.from(
+    process.env.GH_APP_PRIVATE_KEY!,
+    'base64',
+  ).toString();
   const now = Math.floor(Date.now() / 1000);
-  const appJwt = jwt.sign({ iat: now - 60, exp: now + 600, iss: process.env.GH_APP_ID }, privateKey, { algorithm: 'RS256' });
+  const appJwt = jwt.sign(
+    { iat: now - 60, exp: now + 600, iss: process.env.GH_APP_ID },
+    privateKey,
+    { algorithm: 'RS256' },
+  );
   const response = await fetch(
     `https://api.github.com/app/installations/${process.env.GH_APP_INSTALLATION_ID}/access_tokens`,
     {
